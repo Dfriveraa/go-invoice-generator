@@ -49,7 +49,7 @@ func (doc *Document) Build() (*fpdf.Fpdf, error) {
 	doc.appendTitle()
 
 	// Appenf document metas (ref & version)
-	doc.appendMetas()
+	// doc.appendMetas()
 
 	// Append company contact to doc
 	companyBottom := doc.Company.appendCompanyContactToDoc(doc)
