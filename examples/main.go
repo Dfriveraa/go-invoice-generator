@@ -1,9 +1,6 @@
 package main
 
 import (
-	"bytes"
-	"fmt"
-
 	generator "github.com/dfriveraa/go-invoice-generator"
 )
 
@@ -29,13 +26,13 @@ func main() {
 	})
 
 	doc.SetRef("testràf")
-	doc.SetVersion("someversion")
+	// doc.SetVersion("someversion")
 
 	doc.SetDescription("A description àç")
 	doc.SetNotes("I léove croissant cotton candy.")
 
 	doc.SetDate("02/03/2021")
-	doc.SetPaymentTerm("02/04/2021")
+	// doc.SetPaymentTerm("02/04/2021")
 
 	doc.SetCompany(&generator.Contact{
 		Name: "Test Company",
@@ -58,60 +55,57 @@ func main() {
 		},
 	})
 
-	for i := 0; i < 10; i++ {
+	for i := 0; i < 15; i++ {
 		doc.AppendItem(&generator.Item{
-			Name:        "Cupcake ipsum dolor sit amet bonbon, coucou bonbon lala jojo, mama titi toto",
+			Name:        "Cupcake ipsum dolor sit amet bonbon",
 			Description: "Cupcake ipsum dolor sit amet bonbon, Cupcake ipsum dolor sit",
 			UnitCost:    "99876.89",
 			Quantity:    "2",
-			Tax: &generator.Tax{
-				Percent: "20",
-			},
+			// Tax: &generator.Tax{
+			// 	Percent: "20",
+			// },
 		})
 	}
 
-	doc.AppendItem(&generator.Item{
-		Name:     "Test",
-		UnitCost: "99876.89",
-		Quantity: "2",
-		Tax: &generator.Tax{
-			Amount: "89",
-		},
-		Discount: &generator.Discount{
-			Percent: "30",
-		},
-	})
+	// doc.AppendItem(&generator.Item{
+	// 	Name:     "Test",
+	// 	UnitCost: "99876.89",
+	// 	Quantity: "2",
+	// 	// Tax: &generator.Tax{
+	// 	// 	Amount: "89",
+	// 	// },
+	// 	// Discount: &generator.Discount{
+	// 	// 	Percent: "30",
+	// 	// },
+	// })
 
-	doc.AppendItem(&generator.Item{
-		Name:     "Test",
-		UnitCost: "889.89",
-		Quantity: "2",
-		Discount: &generator.Discount{
-			Amount: "234.67",
-		},
-	})
+	// doc.AppendItem(&generator.Item{
+	// 	Name:     "Test",
+	// 	UnitCost: "889.89",
+	// 	Quantity: "2",
+	// 	// Discount: &generator.Discount{
+	// 	// 	Amount: "234.67",
+	// 	// },
+	// })
 
-	doc.SetDefaultTax(&generator.Tax{
-		Percent: "10",
-	})
+	// doc.SetDefaultTax(&generator.Tax{
+	// 	Percent: "10",
+	// })
 
-	doc.SetDiscount(&generator.Discount{
-		Amount: "1340",
-	})
+	// doc.SetDiscount(&generator.Discount{
+	// 	Amount: "1340",
+	// })
 
 	pdf, err := doc.Build()
 	if err != nil {
 		panic(err)
 	}
 
-	buf := &bytes.Buffer{}
-	if err := pdf.Output(buf); err != nil {
+	// Convert to byte slice
+	err = pdf.OutputFileAndClose("out.pdf")
+
+	if err != nil {
 		panic(err)
 	}
-
-	// Convert to byte slice
-	docAsBytes := buf.Bytes()
-
 	// Print to STDOUT
-	fmt.Printf("%v\n", docAsBytes)
 }
