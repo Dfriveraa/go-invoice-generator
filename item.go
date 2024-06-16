@@ -12,9 +12,9 @@ type Item struct {
 	Quantity    string    `json:"quantity,omitempty"`
 	Tax         *Tax      `json:"tax,omitempty"`
 	Discount    *Discount `json:"discount,omitempty"`
-
-	_unitCost decimal.Decimal
-	_quantity decimal.Decimal
+	BillingName string    `json:"billing_name,omitempty"`
+	_unitCost   decimal.Decimal
+	_quantity   decimal.Decimal
 }
 
 // Prepare convert strings to decimal
@@ -169,19 +169,19 @@ func (i *Item) appendColTo(options *Options, doc *Document) {
 	// 	"",
 	// )
 
-	// // Quantity
-	// doc.pdf.SetX(ItemColQuantityOffset)
-	// doc.pdf.CellFormat(
-	// 	ItemColTaxOffset-ItemColQuantityOffset,
-	// 	colHeight,
-	// 	doc.encodeString(i._quantity.String()),
-	// 	"0",
-	// 	0,
-	// 	"",
-	// 	false,
-	// 	0,
-	// 	"",
-	// )
+	// Quantity
+	doc.pdf.SetX(ItemColQuantityOffset)
+	doc.pdf.CellFormat(
+		ItemColTaxOffset-ItemColQuantityOffset,
+		colHeight,
+		doc.encodeString(i.BillingName),
+		"0",
+		0,
+		"",
+		false,
+		0,
+		"",
+	)
 
 	// // Total HT
 	// doc.pdf.SetX(ItemColTotalHTOffset)

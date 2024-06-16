@@ -187,19 +187,19 @@ func (doc *Document) drawsTableTitles() {
 	// 	"",
 	// )
 
-	// // Quantity
-	// doc.pdf.SetX(ItemColQuantityOffset)
-	// doc.pdf.CellFormat(
-	// 	ItemColTaxOffset-ItemColQuantityOffset,
-	// 	6,
-	// 	doc.encodeString(doc.Options.TextItemsQuantityTitle),
-	// 	"0",
-	// 	0,
-	// 	"",
-	// 	false,
-	// 	0,
-	// 	"",
-	// )
+	// Quantity
+	doc.pdf.SetX(ItemColQuantityOffset)
+	doc.pdf.CellFormat(
+		ItemColTaxOffset-ItemColQuantityOffset,
+		6,
+		doc.encodeString(doc.Options.TextItemsQuantityTitle),
+		"0",
+		0,
+		"",
+		false,
+		0,
+		"",
+	)
 
 	// // Total HT
 	// doc.pdf.SetX(ItemColTotalHTOffset)

@@ -6,13 +6,15 @@ import (
 
 func main() {
 	doc, _ := generator.New(generator.Invoice, &generator.Options{
-		TextTypeInvoice: "FACTURE",
-		TextRefTitle:    "Ref",
-		AutoPrint:       true,
-		BaseTextColor:   []int{6, 63, 156},
-		GreyTextColor:   []int{161, 96, 149},
-		GreyBgColor:     []int{171, 240, 129},
-		DarkBgColor:     []int{176, 12, 20},
+		TextTypeInvoice:        "FACTURE",
+		TextRefTitle:           "Ref",
+		AutoPrint:              true,
+		BaseTextColor:          []int{6, 63, 156},
+		GreyTextColor:          []int{161, 96, 149},
+		GreyBgColor:            []int{171, 240, 129},
+		DarkBgColor:            []int{176, 12, 20},
+		TextItemsNameTitle:     "Load Number",
+		TextItemsQuantityTitle: "Billing Name",
 	})
 
 	doc.SetHeader(&generator.HeaderFooter{
@@ -25,10 +27,10 @@ func main() {
 		Pagination: true,
 	})
 
-	doc.SetRef("testràf")
+	doc.SetRef("_")
 	// doc.SetVersion("someversion")
 
-	doc.SetDescription("A description àç")
+	doc.SetDescription("<a href='https://www.example.com' style='color:purple;'>Example Link</a>")
 	doc.SetNotes("I léove croissant cotton candy.")
 
 	doc.SetDate("02/03/2021")
@@ -61,6 +63,7 @@ func main() {
 			Description: "Cupcake ipsum dolor sit amet bonbon, Cupcake ipsum dolor sit",
 			UnitCost:    "99876.89",
 			Quantity:    "2",
+			BillingName: "Billing 1234",
 			// Tax: &generator.Tax{
 			// 	Percent: "20",
 			// },
